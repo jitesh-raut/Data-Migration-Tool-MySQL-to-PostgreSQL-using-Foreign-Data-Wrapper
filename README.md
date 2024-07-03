@@ -249,8 +249,24 @@ Steps to create a database named `userdb`, create tables related to users, and i
    ```
 
 ### Importing Foreign Schema from MySQL into PostgreSQL
-
-15. **Import Foreign Schema in PostgreSQL:**
+1. **Create the extension if not already created:**
+   ```sql
+   CREATE EXTENSION IF NOT EXISTS mysql_fdw;
+   ```
+2. **Create foreign server to connect MySQL from Postgresql:**
+   ```sql
+   CREATE SERVER mysql_server
+   FOREIGN DATA WRAPPER mysql_fdw
+   OPTIONS (host 'localhost', port '3306');
+   ```
+3. **Create User Mappings:**
+   ```sql
+   CREATE USER MAPPING FOR CURRENT_USER
+   SERVER mysql_server
+   OPTIONS (username 'root', password 'rootpass');
+   ```
+  
+4. **Import Foreign Schema in PostgreSQL:**
     ```sql
     IMPORT FOREIGN SCHEMA userdb
     FROM SERVER mysql_server
