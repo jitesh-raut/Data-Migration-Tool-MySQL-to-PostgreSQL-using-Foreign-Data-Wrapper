@@ -116,11 +116,7 @@ To install PostgreSQL 14 on Ubuntu, you can follow these steps:
    ```
 
 10. **Install PostgreSQL FDW Extensions (Example commands):**
-    - Install `postgres_fdw`:
-      ```sh
-      sudo apt install postgresql-14-postgres-fdw
-      ```
-    - Install `mysql_fdw` (example):
+    - Install `mysql_fdw`:
       ```sh
       sudo apt install postgresql-14-mysql-fdw
       ```
